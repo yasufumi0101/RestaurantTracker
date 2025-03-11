@@ -6,6 +6,7 @@ import (
 	"backend/repositories"
 	"backend/services"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -18,10 +19,13 @@ func main() {
 	authController := controllers.NewAuthContoller(authService)
 
 	r := gin.Default()
-	authRouter := r.Group("/auth")
 
+	// CORS ミドルウェアの設定
+	r.Use(cors.Default())
+
+	authRouter := r.Group("/auth")
 	authRouter.POST("/signup", authController.Signup)
-	authRouter.POST("/login", authController.Login) // ここのimport部分は再度チェックする必要がある
+	authRouter.POST("/login", authController.Login)
 
 	r.Run(":8080")
 }

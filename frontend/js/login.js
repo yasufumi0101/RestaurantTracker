@@ -7,7 +7,7 @@ function submitLoginInformation(event) {
   const password = document.getElementById('password').value;
 
   // メールアドレスの確認
-  if(!email.match(/.+@.+\..+/)) {
+  if (!email.match(/.+@.+\..+/)) {
     window.alert('メールアドレスを確認してください');
     return;
   }
@@ -21,24 +21,25 @@ function submitLoginInformation(event) {
   }
 
   // サーバーへログイン情報を送信
-  fetch('http://localhost:8080/submit-logininformation',{
+  fetch('http://localhost:8080/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({ email: email, password: password })
   })
-  .then(response => response.json())
-  .then(data => {
-    if (data.success) {
-      // ログイン成功時、指定したページに移動
-      window.location.href = '/map'; //ログイン情報に沿った遷移に変更必要
-    }else {
-      alert('ログイン情報が正しくありません');
-    }
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    alert('エラーが発生しました');
-  });
+    .then(response => response.json())
+    .then(data => {
+      if (data.token) {
+        // ログイン情報を保存
+        localStorage.setItem('token', data.token);
+        window.location.href = '/map'; //ログイン情報に沿った遷移に変更必要
+      } else {
+        alert('ログイン情報が正しくありません');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('エラーが発生しました');
+    });
 }
