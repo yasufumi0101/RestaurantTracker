@@ -6,7 +6,7 @@ const port = 3000;
 const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY;
 const cors = require('cors')
 app.use(cors());
-app.use(express.static('.'))
+app.use(express.static('.'));
 
 app.get('/', (_, res) => {
   res.sendFile(path.join(__dirname, 'views', 'login.html'));
@@ -22,7 +22,7 @@ app.get('/map', (_, res) => {
         <link rel="stylesheet" href="/css/map.css">
         <!-- Google Maps API キーを埋め込む -->
         <script async src="https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&language=ja&libraries=geometry"></script>
-        <script src="/app.js" defer></script>
+        <script src="/js/map.js" defer></script>
     </head>
     <body>
         <div id="container">
