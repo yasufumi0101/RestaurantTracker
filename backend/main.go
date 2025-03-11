@@ -1,21 +1,27 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"backend/controllers"
+	"backend/infra"
+	"backend/repositories"
+	"backend/services"
+
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
+	infra.Initialize()
+	db := infra.SetupDB()
+
+	authRepository := repositories.NewAuthRepository(db)
+	authService := services.NewAuthService(authRepository)
+	authController := controllers.NewAuthContoller(authService)
+
 	r := gin.Default()
+	authRouter := r.Group("/auth")
 
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "Welcome to the server!",
-		})
-	})
-
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+	authRouter.POST("/signup", authController.Signup)
+	authRouter.POST("/login", authController.Login) // ここのimport部分は再度チェックする必要がある
 
 	r.Run(":8080")
 }
