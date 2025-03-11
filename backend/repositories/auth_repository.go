@@ -16,7 +16,7 @@ type AuthRepository struct {
 	db *gorm.DB
 }
 
-// 可読性向上のため
+// 可読性のためにNewAuthRepository関数を追加
 func NewAuthRepository(db *gorm.DB) IAuthRepository {
 	return &AuthRepository{db: db}
 }

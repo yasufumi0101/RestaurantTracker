@@ -17,6 +17,7 @@ type AuthController struct {
 	service services.IAuthService
 }
 
+// 可読性のためにNewAuthContoller関数を追加
 func NewAuthContoller(service services.IAuthService) IAuthController {
 	return &AuthController{service: service}
 }
@@ -53,6 +54,8 @@ func (c *AuthController) Login(ctx *gin.Context) {
 			ctx.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
 			return
 		}
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
 	}
 	ctx.JSON(http.StatusOK, gin.H{"token": token})
 }
