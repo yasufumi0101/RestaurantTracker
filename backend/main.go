@@ -21,8 +21,10 @@ func main() {
 	r := gin.Default()
 
 	// CORS ミドルウェアの設定
+	// 簡単のため、全てのリクエスト元を許可
 	r.Use(cors.Default())
 
+	// 実装したミドルウェアをまだ適応していない
 	authRouter := r.Group("/auth")
 	authRouter.POST("/signup", authController.Signup)
 	authRouter.POST("/login", authController.Login)
