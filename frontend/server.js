@@ -7,33 +7,15 @@ const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY;
 const cors = require('cors')
 app.use(cors());
 app.use(express.static('.'));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 app.get('/', (_, res) => {
   res.sendFile(path.join(__dirname, 'views', 'login.html'));
 });
 
 app.get('/map', (_, res) => {
-  res.send(`
-    <!DOCTYPE html>
-    <html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <title>ホームページ</title>
-        <link rel="icon" href="images/favicon.png">
-        <link rel="stylesheet" href="/css/map.css">
-        <!-- Google Maps API キーを埋め込む -->
-        <script async src="https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&language=ja&libraries=geometry"></script>
-        <script src="/js/map.js" defer></script>
-    </head>
-    <body>
-        <div id="container">
-            <div id="sidebar">
-            </div>
-            <div id="map"></div>
-        </div>
-    </body>
-    </html>
-    `);
+  res.render(`homepage`, { googleMapsApiKey });
 });
 
 const startServer = async () => {
