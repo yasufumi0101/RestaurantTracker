@@ -18,7 +18,8 @@ app.get('/map', (_, res) => {
     <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>Wifi Radar</title>
+        <title>ホームページ</title>
+        <link rel="icon" href="images/favicon.png">
         <link rel="stylesheet" href="/css/map.css">
         <!-- Google Maps API キーを埋め込む -->
         <script async src="https://maps.googleapis.com/maps/api/js?key=${googleMapsApiKey}&language=ja&libraries=geometry"></script>
@@ -36,7 +37,7 @@ app.get('/map', (_, res) => {
 });
 
 const startServer = async () => {
-  app.listen(port, async () =>{
+  app.listen(port, async () => {
     console.log('Server running on http://localhost:${port}');
     try {
       const open = (await import('open')).default;

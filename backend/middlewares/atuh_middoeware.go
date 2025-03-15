@@ -2,6 +2,7 @@ package middlewares
 
 import (
 	"backend/services"
+	"fmt"
 	"net/http"
 	"strings"
 
@@ -27,6 +28,7 @@ func AuthMiddleware(authService services.IAuthService) gin.HandlerFunc {
 		tokenString := strings.TrimPrefix(header, "Bearer ")
 		user, err := authService.GetUserFromToken(tokenString)
 		if err != nil {
+			fmt.Println("Error in GetUserFromToken:", err) // エラー内容をログに出力
 			ctx.AbortWithStatus(http.StatusUnauthorized)
 			return
 		}
