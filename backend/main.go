@@ -17,9 +17,14 @@ func main() {
 	infra.Initialize()
 	db := infra.SetupDB()
 
+	// 依存性の注入
 	authRepository := repositories.NewAuthRepository(db)
 	authService := services.NewAuthService(authRepository)
 	authController := controllers.NewAuthContoller(authService)
+
+	googleClient := infra.NewGoogleClient()
+	researchService := &services.ResearchService{Client: googleClient}
+	researchController := controllers.NewResearchController(researchService)
 
 	r := gin.Default()
 
@@ -37,6 +42,8 @@ func main() {
 	authRouter := r.Group("/auth")
 	authRouter.POST("/signup", authController.Signup)
 	authRouter.POST("/login", authController.Login)
+
+	r.POST("/search", researchController.SearchRestaurant)
 
 	// 認証の必要なエンドポイント
 	protectedRouter := r.Group("/")
