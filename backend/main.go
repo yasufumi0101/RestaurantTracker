@@ -23,7 +23,7 @@ func main() {
 	authController := controllers.NewAuthContoller(authService)
 
 	googleClient := infra.NewGoogleClient()
-	researchService := &services.ResearchService{Client: googleClient}
+	researchService := services.NewResearchService(googleClient)
 	researchController := controllers.NewResearchController(researchService)
 
 	r := gin.Default()

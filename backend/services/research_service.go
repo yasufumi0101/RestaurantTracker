@@ -16,6 +16,10 @@ type ResearchService struct {
 	Client *maps.Client
 }
 
+func NewResearchService(client *maps.Client) IResearchService {
+	return &ResearchService{Client: client}
+}
+
 func (s *ResearchService) SearchRestaurant(query string) (*models.Restaurant, error) {
 	request := &maps.TextSearchRequest{
 		Query: query,
