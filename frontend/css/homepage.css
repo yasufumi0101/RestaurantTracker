@@ -1,0 +1,69 @@
+#container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+#sidebar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 25%;
+  background-color: #c4faff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  transform: translateX(0);
+  /* 初期位置 */
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+/* 検索フォームのデザイン */
+#search-form {
+  display: flex;
+  align-items: center;
+  border: 1px solid #4e71b7;
+  border-radius: 24px;
+  padding: 5px 12px;
+  width: 80%;
+  max-width: 250px;
+  /* フォームの最大幅 */
+  min-width: 180px;
+  /* 幅が狭くなりすぎないように */
+  background-color: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  margin: 100px auto 10px auto;
+}
+
+/* 🔍 アイコンのデザイン */
+.search-icon {
+  display: block;
+  width: 18px;
+  height: 18px;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+  /* アイコンの縮小を防ぐ */
+  margin-right: 8px;
+}
+
+/* 入力フィールド */
+#search-input {
+  flex-grow: 1;
+  /* フォーム内で適切な幅を確保 */
+  min-width: 100px;
+  /* 極端に小さくならないように */
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: transparent;
+  padding: 5px;
+}

@@ -1,16 +1,18 @@
-document.addEventListener('DOMContentLoaded', function() {
+let map;
+
+document.addEventListener('DOMContentLoaded', function () {
     initMap();
 });
 
 function initMap() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
+        navigator.geolocation.getCurrentPosition(function (position) {
             var pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
 
-            var map = new google.maps.Map(document.getElementById('map'), {
+            map = new google.maps.Map(document.getElementById('map'), {
                 center: pos,
                 zoom: 15
             });
@@ -18,13 +20,13 @@ function initMap() {
             new google.maps.Marker({
                 position: pos,
                 map: map,
-                title: '現在地'
+                title: '現在地',
             });
-        }, function() {
-            handleLocationError(true, { lat:35.681236, lng: 139.767125 });//東京駅
+        }, function () {
+            handleLocationError(true, { lat: 35.681236, lng: 139.767125 });//東京駅
         });
     } else {
-        handleLocationError(false, { lat:35.681236, lng: 139.767125 });
+        handleLocationError(false, { lat: 35.681236, lng: 139.767125 });
     }
 }
 

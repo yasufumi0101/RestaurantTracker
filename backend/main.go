@@ -3,8 +3,11 @@ package main
 import (
 	"backend/controllers"
 	"backend/infra"
+	"backend/middlewares"
 	"backend/repositories"
 	"backend/services"
+	"net/http"
+	"time"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -14,20 +17,47 @@ func main() {
 	infra.Initialize()
 	db := infra.SetupDB()
 
+	// 依存性の注入
 	authRepository := repositories.NewAuthRepository(db)
 	authService := services.NewAuthService(authRepository)
 	authController := controllers.NewAuthContoller(authService)
 
+	googleClient := infra.NewGoogleClient()
+	researchService := services.NewResearchService(googleClient)
+	researchController := controllers.NewResearchController(researchService)
+
 	r := gin.Default()
 
 	// CORS ミドルウェアの設定
-	// 簡単のため、全てのリクエスト元を許可
-	r.Use(cors.Default())
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"http://localhost:3000"}, // フロントエンドのURLを明示的に許可
+		AllowMethods:     []string{"GET", "POST", "PUT"},
+		AllowHeaders:     []string{"Authorization", "Content-Type"},
+		ExposeHeaders:    []string{"Authorization"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour, // プリフライトリクエストをキャッシュ
+	}))
 
-	// 実装したミドルウェアをまだ適応していない
+	// 認証のいらないエンドポイント
 	authRouter := r.Group("/auth")
 	authRouter.POST("/signup", authController.Signup)
 	authRouter.POST("/login", authController.Login)
+
+	r.POST("/search", researchController.SearchRestaurant)
+
+	// 認証の必要なエンドポイント
+	protectedRouter := r.Group("/")
+	protectedRouter.Use(middlewares.AuthMiddleware(authService))
+
+	// ユーザー情報の取得
+	protectedRouter.GET("/auth/validate", func(ctx *gin.Context) {
+		user, exists := ctx.Get("user")
+		if !exists {
+			ctx.JSON(http.StatusUnauthorized, gin.H{"valid": false})
+			return
+		}
+		ctx.JSON(http.StatusOK, gin.H{"valid": true, "user": user})
+	})
 
 	r.Run(":8080")
 }

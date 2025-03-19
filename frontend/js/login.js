@@ -1,4 +1,39 @@
-const { response } = require("express");
+// 通常のログイン画面の処理を行う
+// DOMContentLoadedとは、HTMLとCSSが読み込まれた後に実行される関数
+document.addEventListener('DOMContentLoaded', initializeLogin);
+
+function initializeLogin() {
+
+  const token = localStorage.getItem('token');
+  if (token) {
+    fetch('http://localhost:8080/auth/validate', {
+      method: "GET",
+      mode: 'cors',
+      credentials: "include",
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.valid) {
+          localStorage.setItem("user", JSON.stringify(data.user));
+          window.location.href = '/map'; // 認証成功時に遷移する
+        } else {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('エラーが発生しました');
+      });
+  }
+
+  const loginForm = document.getElementById('login-form');
+  loginForm.addEventListener('submit', submitLoginInformation);
+}
+
 
 function submitLoginInformation(event) {
   event.preventDefault(); // テスト送信のために入れたが、後で消す。ページ遷移をアカウントごと
@@ -33,7 +68,22 @@ function submitLoginInformation(event) {
       if (data.token) {
         // ログイン情報を保存
         localStorage.setItem('token', data.token);
-        window.location.href = '/map'; //ログイン情報に沿った遷移に変更必要
+
+        fetch('http://localhost:8080/auth/validate', {
+          method: "GET",
+          mode: 'cors',
+          credentials: "include",
+          headers: {
+            'Authorization': `Bearer ${data.token}`
+          }
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.valid) {
+              localStorage.setItem("user", JSON.stringify(data.user));
+              window.location.href = '/map';
+            }
+          })
       } else {
         alert('ログイン情報が正しくありません');
       }
