@@ -1,0 +1,18 @@
+document.addEventListener('DOMContentLoaded', toggleSidebar);
+
+function toggleSidebar() {
+  const registerBtn = document.getElementById('register-btn');
+  const backBtn = document.getElementById('back-btn');
+  const homeSection = document.getElementById('home-section');
+  const registerSection = document.getElementById('register-section');
+
+  registerBtn.addEventListener('click', function () {
+    homeSection.style.display = 'none';
+    registerSection.style.display = 'block';
+  });
+
+  backBtn.addEventListener('click', function () {
+    registerSection.style.display = 'none';
+    homeSection.style.display = 'block';
+  });
+}

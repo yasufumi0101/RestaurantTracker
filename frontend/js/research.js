@@ -35,6 +35,7 @@ function handleSearch(event) {
       console.log("バックエンドからのデータ:", data);
       if (data.success && data.Location) {
         updateMap(data.Location, data.name);
+        displayRestaurantName(data.name);
       } else {
         alert('検索結果が見つかりませんでした');
       }
@@ -55,4 +56,15 @@ function updateMap(location, name) {
     map: map,
     title: name
   });
+}
+
+function displayRestaurantName(name) {
+  const restaurantName = document.getElementById('restaurant-name');
+  const searchResult = document.getElementById('search-result');
+  if (restaurantName) {
+    restaurantName.textContent = name;
+    searchResult.style.display = 'block';
+  } else {
+    searchResult.style.display = 'none';
+  }
 }

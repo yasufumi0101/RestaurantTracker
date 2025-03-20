@@ -11,14 +11,28 @@
     src="https://maps.googleapis.com/maps/api/js?key=<%= googleMapsApiKey %>&language=ja&libraries=geometry"></script>
   <script src="/js/map.js" defer></script>
   <script src="/js/research.js" defer></script>
+  <script src="js/sidebar.js" defer></script>
 </head>
 
 <body>
   <div id="container">
     <div id="sidebar">
-      <form id="search-form">
-        <span class="search-icon"></span>
-        <input type="text" id="search-input" placeholder="店名を入力">
+      <div id="home-section">
+        <button id="register-btn" class="black-button">記録する</button>
+      </div>
+      <div id="register-section" style="display: none;">
+        <div id="register-form">
+          <form id="search-form">
+            <span class="search-icon"></span>
+            <input type="text" id="search-input" placeholder="店名を入力">
+          </form>
+          <button type="submit" class="black-button">登録</button>
+        </div>
+        <div id="search-result">
+          <p id="restaurant-name"></p>
+        </div>
+        <button id="back-btn" class="black-button">戻る</button>
+      </div>
     </div>
     <div id="map"></div>
   </div>
