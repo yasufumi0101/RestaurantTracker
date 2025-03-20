@@ -9,10 +9,12 @@ function toggleSidebar() {
   registerBtn.addEventListener('click', function () {
     homeSection.style.display = 'none';
     registerSection.style.display = 'block';
+    backBtn.style.display = 'block';
   });
 
   backBtn.addEventListener('click', function () {
     registerSection.style.display = 'none';
     homeSection.style.display = 'block';
+    backBtn.style.display = 'none';
   });
 }

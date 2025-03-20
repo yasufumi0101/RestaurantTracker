@@ -22,7 +22,8 @@ func NewResearchService(client *maps.Client) IResearchService {
 
 func (s *ResearchService) SearchRestaurant(query string) (*models.Restaurant, error) {
 	request := &maps.TextSearchRequest{
-		Query: query,
+		Query:    query,
+		Language: "ja",
 	}
 
 	// google maps apiを使って検索
@@ -34,6 +35,7 @@ func (s *ResearchService) SearchRestaurant(query string) (*models.Restaurant, er
 
 	// 1件目の検索結果を返す
 	places := result.Results[0]
+	fmt.Println(places)
 	return &models.Restaurant{
 		Name: places.Name,
 		Lat:  places.Geometry.Location.Lat,
