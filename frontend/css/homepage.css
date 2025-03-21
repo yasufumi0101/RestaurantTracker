@@ -84,6 +84,10 @@
   display: block;
 }
 
+#register-button {
+  display: none;
+}
+
 #register-btn {
   width: 80%;
   margin: 10px auto;
@@ -125,5 +129,84 @@
   margin-top: auto;
   margin-bottom: 40px;
   align-self: center;
+  display: none;
+}
+
+#rating-title {
+  background-color: gray;
+  color: white;
+  padding: 8px 15px;
+  margin-bottom: 0px;
+  width: fit-content;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: block;
+  text-align: center;
+  display: none;
+}
+
+/* 親コンテナ */
+.star {
+  position: relative;
+  /* 子要素を絶対配置で重ねるため */
+  display: inline-block;
+  /* インライン要素として横幅を自動調整 */
+  font-size: 50px;
+  /* 星の大きさを管理 */
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+/* 下地のグレー星 */
+.star-gray {
+  color: grey;
+  margin: 0;
+  padding: 0;
+}
+
+/* 重ねるオレンジ星 */
+.star_yellow {
+  position: absolute;
+  /* 親要素 (.star) を基準に重ねる */
+  top: 0;
+  left: 0;
+  color: orange;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  /* 幅を調整して星の塗りつぶし量を表現する */
+  width: 0;
+  /* 初期は0にしておいて、JSなどで動的に幅を変える */
+}
+
+#memo-title {
+  background-color: gray;
+  color: white;
+  padding: 8px 15px;
+  margin-bottom: 0px;
+  width: fit-content;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: block;
+  text-align: center;
+  display: none;
+}
+
+#memo {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  height: 100px;
+  margin-top: 5px;
+  padding: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
   display: none;
 }

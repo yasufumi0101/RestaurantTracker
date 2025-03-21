@@ -35,7 +35,6 @@ func (s *ResearchService) SearchRestaurant(query string) (*models.Restaurant, er
 
 	// 1件目の検索結果を返す
 	places := result.Results[0]
-	fmt.Println(places)
 	return &models.Restaurant{
 		Name: places.Name,
 		Lat:  places.Geometry.Location.Lat,

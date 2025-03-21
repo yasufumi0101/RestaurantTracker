@@ -12,6 +12,7 @@
   <script src="/js/map.js" defer></script>
   <script src="/js/research.js" defer></script>
   <script src="js/sidebar.js" defer></script>
+  <script src="js/register.js" defer></script>
 </head>
 
 <body>
@@ -26,12 +27,18 @@
             <span class="search-icon"></span>
             <input type="text" id="search-input" placeholder="店名を入力">
           </form>
-          <button type="submit" class="black-button">登録</button>
+          <button type="submit" id="register-button" class="black-button">登録</button>
         </div>
         <div id="search-result">
           <p id="restaurant-name"></p>
         </div>
-
+        <p id="rating-title">評価</p>
+        <div id="star" class="star">
+          <p class="star-gray">★★★★★</p>
+          <p id="star_color" class="star_yellow">★★★★★</p>
+        </div>
+        <p id="memo-title">メモ</p>
+        <textarea id="memo" placeholder="メモを入力"></textarea>
       </div>
       <button id="back-btn" class="black-button">戻る</button>
     </div>
