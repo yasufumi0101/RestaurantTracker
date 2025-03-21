@@ -132,6 +132,25 @@
   display: none;
 }
 
+#date-title {
+  background-color: gray;
+  color: white;
+  padding: 8px 15px;
+  margin-bottom: 0px;
+  width: fit-content;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: block;
+  text-align: center;
+  display: none;
+}
+
+#date-input {
+  display: none;
+  margin-top: 10px;
+}
+
 #rating-title {
   background-color: gray;
   color: white;
@@ -157,6 +176,7 @@
   margin: 0;
   padding: 0;
   display: none;
+  width: fit-content;
 }
 
 /* 下地のグレー星 */
@@ -164,6 +184,7 @@
   color: grey;
   margin: 0;
   padding: 0;
+  white-space: nowrap;
 }
 
 /* 重ねるオレンジ星 */
@@ -177,9 +198,10 @@
   padding: 0;
   white-space: nowrap;
   overflow: hidden;
-  /* 幅を調整して星の塗りつぶし量を表現する */
-  width: 0;
+  width: 0%;
   /* 初期は0にしておいて、JSなどで動的に幅を変える */
+  height: 100%;
+  font-size: inherit;
 }
 
 #memo-title {

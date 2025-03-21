@@ -35,6 +35,7 @@ function handleSearch(event) {
       if (data.success && data.Location) {
         updateMap(data.Location, data.name);
         displayRestaurantName(data.name);
+        window.setSelectedLocation(data.Location);
       } else {
         alert('検索結果が見つかりませんでした');
       }
@@ -60,6 +61,8 @@ function updateMap(location, name) {
 function displayRestaurantName(name) {
   const restaurantName = document.getElementById('restaurant-name');
   const searchResult = document.getElementById('search-result');
+  const dateTitle = document.getElementById('date-title');
+  const date = document.getElementById('date-input');
   const registerBtn = document.getElementById('register-button');
   const star = document.getElementById('star');
   const title = document.getElementById('rating-title');
@@ -69,6 +72,8 @@ function displayRestaurantName(name) {
   if (restaurantName) {
     restaurantName.textContent = name;
     searchResult.style.display = 'block';
+    dateTitle.style.display = 'block';
+    date.style.display = 'block';
     registerBtn.style.display = 'block';
     star.style.display = 'block';
     title.style.display = 'block';
@@ -76,6 +81,8 @@ function displayRestaurantName(name) {
     memo.style.display = 'block';
   } else {
     searchResult.style.display = 'none';
+    dateTitle.style.display = 'none';
+    date.style.display = 'none';
     registerBtn.style.display = 'none';
     star.style.display = 'none';
     title.style.display = 'none';
