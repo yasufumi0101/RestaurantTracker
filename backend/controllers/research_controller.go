@@ -34,17 +34,5 @@ func (c *ResearchController) SearchRestaurant(ctx *gin.Context) {
 		return
 	}
 
-	response := dto.SearchRestaurantOutput{
-		Success: true,
-		Name:    restaurant.Name,
-		Location: struct {
-			Lat float64 `json:"lat"`
-			Lng float64 `json:"lng"`
-		}{
-			Lat: restaurant.Lat,
-			Lng: restaurant.Lng,
-		},
-	}
-
-	ctx.JSON(http.StatusOK, response)
+	ctx.JSON(http.StatusOK, restaurant)
 }
