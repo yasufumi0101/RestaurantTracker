@@ -1,7 +1,7 @@
 package services
 
 import (
-	"backend/models"
+	"backend/dto"
 	"context"
 	"fmt"
 
@@ -9,7 +9,7 @@ import (
 )
 
 type IResearchService interface {
-	SearchRestaurant(query string) (*models.Restaurant, error)
+	SearchRestaurant(query string) (*dto.SearchRestaurantOutput, error)
 }
 
 type ResearchService struct {
@@ -20,9 +20,10 @@ func NewResearchService(client *maps.Client) IResearchService {
 	return &ResearchService{Client: client}
 }
 
-func (s *ResearchService) SearchRestaurant(query string) (*models.Restaurant, error) {
+func (s *ResearchService) SearchRestaurant(query string) (*dto.SearchRestaurantOutput, error) {
 	request := &maps.TextSearchRequest{
-		Query: query,
+		Query:    query,
+		Language: "ja",
 	}
 
 	// google maps apiを使って検索
@@ -34,9 +35,15 @@ func (s *ResearchService) SearchRestaurant(query string) (*models.Restaurant, er
 
 	// 1件目の検索結果を返す
 	places := result.Results[0]
-	return &models.Restaurant{
-		Name: places.Name,
-		Lat:  places.Geometry.Location.Lat,
-		Lng:  places.Geometry.Location.Lng,
+	return &dto.SearchRestaurantOutput{
+		Success: true,
+		Name:    places.Name,
+		Location: struct {
+			Lat float64 `json:"lat"`
+			Lng float64 `json:"lng"`
+		}{
+			Lat: places.Geometry.Location.Lat,
+			Lng: places.Geometry.Location.Lng,
+		},
 	}, nil
 }

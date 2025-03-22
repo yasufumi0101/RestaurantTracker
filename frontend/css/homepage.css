@@ -14,9 +14,11 @@
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
   padding: 10px;
   transform: translateX(0);
-  /* 初期位置 */
   transition: transform 0.3s ease-in-out;
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 #map {
@@ -30,7 +32,7 @@
   align-items: center;
   border: 1px solid #4e71b7;
   border-radius: 24px;
-  padding: 5px 12px;
+  padding: 2px 12px;
   width: 80%;
   max-width: 250px;
   /* フォームの最大幅 */
@@ -39,7 +41,7 @@
   background-color: #ffffff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  margin: 100px auto 10px auto;
+  margin: 20px auto 20px auto;
 }
 
 /* 🔍 アイコンのデザイン */
@@ -66,4 +68,167 @@
   font-size: 16px;
   background: transparent;
   padding: 5px;
+}
+
+.black-button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px auto;
+  margin: 20px auto 20px auto;
+  width: 80%;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: block;
+}
+
+#register-button {
+  display: none;
+}
+
+#register-btn {
+  width: 80%;
+  margin: 10px auto;
+  display: block;
+}
+
+.black-button:hover {
+  opacity: 0.8;
+}
+
+#register-form input {
+  display: block;
+  width: calc(100% - 20px);
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#search-result {
+  text-align: center;
+  margin: 10px auto;
+  padding: 5px;
+  width: 60%;
+  background-color: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  display: none;
+}
+
+#restaurant-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+}
+
+#back-btn {
+  width: 80%;
+  margin-top: auto;
+  margin-bottom: 40px;
+  align-self: center;
+  display: none;
+}
+
+#date-title {
+  background-color: gray;
+  color: white;
+  padding: 8px 15px;
+  margin-bottom: 0px;
+  width: fit-content;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: block;
+  text-align: center;
+  display: none;
+}
+
+#date-input {
+  display: none;
+  margin-top: 10px;
+}
+
+#rating-title {
+  background-color: gray;
+  color: white;
+  padding: 8px 15px;
+  margin-bottom: 0px;
+  width: fit-content;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: block;
+  text-align: center;
+  display: none;
+}
+
+/* 親コンテナ */
+.star {
+  position: relative;
+  /* 子要素を絶対配置で重ねるため */
+  display: inline-block;
+  /* インライン要素として横幅を自動調整 */
+  font-size: 50px;
+  /* 星の大きさを管理 */
+  margin: 0;
+  padding: 0;
+  display: none;
+  width: fit-content;
+}
+
+/* 下地のグレー星 */
+.star-gray {
+  color: grey;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+}
+
+/* 重ねるオレンジ星 */
+.star_yellow {
+  position: absolute;
+  /* 親要素 (.star) を基準に重ねる */
+  top: 0;
+  left: 0;
+  color: orange;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0%;
+  /* 初期は0にしておいて、JSなどで動的に幅を変える */
+  height: 100%;
+  font-size: inherit;
+}
+
+#memo-title {
+  background-color: gray;
+  color: white;
+  padding: 8px 15px;
+  margin-bottom: 0px;
+  width: fit-content;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  display: block;
+  text-align: center;
+  display: none;
+}
+
+#memo {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  height: 100px;
+  margin-top: 5px;
+  padding: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  display: none;
 }
