@@ -11,11 +11,15 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.get('/', (_, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'homepage.html'));
+});
+
+app.get('/login', (_, res) => {
   res.sendFile(path.join(__dirname, 'views', 'login.html'));
 });
 
 app.get('/map', (_, res) => {
-  res.render(`homepage`, { googleMapsApiKey });
+  res.render(`mypage`, { googleMapsApiKey });
 });
 
 const startServer = async () => {
