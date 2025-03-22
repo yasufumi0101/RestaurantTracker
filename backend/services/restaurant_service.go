@@ -9,6 +9,7 @@ import (
 
 type IRestaurantService interface {
 	RegisterRestaurant(input dto.RegistrateInput, userID uint, visitedAt time.Time) error
+	GetRecentThreeRestaurants(userID uint) ([]models.Restaurant, error)
 }
 
 type RestaurantService struct {
@@ -31,4 +32,8 @@ func (s *RestaurantService) RegisterRestaurant(input dto.RegistrateInput, userID
 	}
 
 	return s.repository.CreateRestaurant(restaurant)
+}
+
+func (s *RestaurantService) GetRecentThreeRestaurants(userID uint) ([]models.Restaurant, error) {
+	return s.repository.FindRecentThreeRestaurants(userID)
 }

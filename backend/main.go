@@ -65,6 +65,7 @@ func main() {
 
 	// レストラン情報の登録
 	protectedRouter.POST("/registrations/restaurant", restaurantController.Register)
+	protectedRouter.GET("/restaurants/recent", restaurantController.GetRecentThreeRestaurants)
 
 	r.Run(":8080")
 }
