@@ -26,6 +26,10 @@ func main() {
 	researchService := services.NewResearchService(googleClient)
 	researchController := controllers.NewResearchController(researchService)
 
+	restaurantRepository := repositories.NewRestaurantRepository(db)
+	restaurantService := services.NewRestaurantService(restaurantRepository)
+	restaurantController := controllers.NewRestaurantController(restaurantService)
+
 	r := gin.Default()
 
 	// CORS ミドルウェアの設定
@@ -58,6 +62,9 @@ func main() {
 		}
 		ctx.JSON(http.StatusOK, gin.H{"valid": true, "user": user})
 	})
+
+	// レストラン情報の登録
+	protectedRouter.POST("/registrations/restaurant", restaurantController.Register)
 
 	r.Run(":8080")
 }
