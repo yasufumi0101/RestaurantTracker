@@ -12,6 +12,7 @@ import (
 
 type IRestaurantController interface {
 	Register(ctx *gin.Context)
+	GetRecentThreeRestaurants(ctx *gin.Context)
 }
 
 type RestaurantController struct {
@@ -52,4 +53,21 @@ func (c *RestaurantController) Register(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusOK, gin.H{"success": true})
+}
+
+func (c *RestaurantController) GetRecentThreeRestaurants(ctx *gin.Context) {
+	user, exists := ctx.Get("user")
+	if !exists {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "VisitedAt is invalid"})
+		return
+	}
+
+	u := user.(*models.User)
+	restaurants, err := c.service.GetRecentThreeRestaurants(u.ID)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	ctx.JSON(http.StatusOK, restaurants)
 }

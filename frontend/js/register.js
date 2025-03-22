@@ -51,6 +51,7 @@ function registerRestaurant() {
 
     fetch('http://localhost:8080/registrations/restaurant', {
       method: 'POST',
+      mode: 'cors',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'

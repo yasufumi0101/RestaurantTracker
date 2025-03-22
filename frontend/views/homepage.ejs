@@ -6,6 +6,7 @@
   <title>ホームページ</title>
   <link rel="icon" href="images/favicon.png">
   <link rel="stylesheet" href="/css/homepage.css">
+  <link rel="stylesheet" href="/css/register.css">
   <!-- Google Maps API キーを埋め込む -->
   <script defer
     src="https://maps.googleapis.com/maps/api/js?key=<%= googleMapsApiKey %>&language=ja&libraries=geometry"></script>
@@ -13,6 +14,7 @@
   <script src="/js/research.js" defer></script>
   <script src="js/sidebar.js" defer></script>
   <script src="js/register.js" defer></script>
+  <script src="js/recentRestaurant.js" defer></script>
 </head>
 
 <body>
@@ -20,6 +22,12 @@
     <div id="sidebar">
       <div id="home-section">
         <button id="register-btn" class="black-button">記録する</button>
+        <p id="restaurant-list">最近のレストラン</p>
+
+        <!-- レストラン一覧 -->
+        <div id="recent-restaurant">
+          <!-- JSで挿入される -->
+        </div>
       </div>
       <div id="register-section" style="display: none;">
         <div id="register-form">
