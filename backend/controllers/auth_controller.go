@@ -36,7 +36,7 @@ func (c *AuthController) Signup(ctx *gin.Context) {
 		return
 	}
 
-	ctx.Status(http.StatusCreated)
+	ctx.JSON(http.StatusCreated, gin.H{"success": true})
 }
 
 func (c *AuthController) Login(ctx *gin.Context) {
