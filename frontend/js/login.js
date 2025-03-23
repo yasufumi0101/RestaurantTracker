@@ -36,7 +36,7 @@ function initializeLogin() {
 
 
 function submitLoginInformation(event) {
-  event.preventDefault(); // テスト送信のために入れたが、後で消す。ページ遷移をアカウントごと
+  event.preventDefault();
 
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;

@@ -14,6 +14,10 @@ app.get('/', (_, res) => {
   res.sendFile(path.join(__dirname, 'views', 'homepage.html'));
 });
 
+app.get('/signup', (_, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'signup.html'));
+});
+
 app.get('/login', (_, res) => {
   res.sendFile(path.join(__dirname, 'views', 'login.html'));
 });
