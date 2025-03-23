@@ -89,3 +89,10 @@
   color: #222;
   margin-bottom: 6px;
 }
+
+#signout-btn {
+  width: 80%;
+  padding: 8px 15px;
+  margin-bottom: 80px;
+  display: block;
+}
