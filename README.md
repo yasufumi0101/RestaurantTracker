@@ -1,7 +1,11 @@
 # RestaurantTracker
 ## 現段階の画面
-### ログイン後のホーム画面/地図は現在地
-![image](https://github.com/user-attachments/assets/0ff0c7fe-f0ef-4ed5-ae28-e303ed0da610)
+### ホームぺージ
+![image](https://github.com/user-attachments/assets/bd999135-aa32-4a0f-b695-e533a1f1c8ff)
+
+### ログイン後のマイページ画面/地図は現在地
+![image](https://github.com/user-attachments/assets/7dc2cd30-18b2-4ad9-878c-96c257c316e9)
+
 ### タップすると詳細情報表示
 ![image](https://github.com/user-attachments/assets/02db347e-08fb-48f2-8844-96679658c7f2)
 ### 登録画面
